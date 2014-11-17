@@ -8,7 +8,7 @@ using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
 namespace FlappyBird
 {
-	public class Bird
+	public class Player
 	{
 		//Private variables.
 		private static SpriteUV 	sprite;
@@ -18,6 +18,7 @@ namespace FlappyBird
 		private static bool			rise;
 		private static float		angle;
 		private static bool			alive;
+		private static float 		speed = 1.0f;
 		
 		public bool Alive { get{return alive;} set{alive = value;} }
 		
@@ -25,7 +26,7 @@ namespace FlappyBird
 		//public SpriteUV Sprite { get{return sprite;} }
 		
 		//Public functions.
-		public Bird (Scene scene)
+		public Player (Scene scene)
 		{
 			textureInfo  = new TextureInfo("/Application/textures/bird.png");
 			
@@ -64,6 +65,42 @@ namespace FlappyBird
 				//sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - 3);
 			}
 		}	
+		
+		public void UpdateV2(bool n, bool e, bool s, bool w)
+		{
+			if (n == true)
+			{
+				sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y + speed);
+			}
+			else
+			{
+				sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y);
+			}
+			if (s == true)
+			{
+				sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - speed);
+			}
+			else
+			{
+				sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y);
+			}
+			if (w == true)
+			{
+				sprite.Position = new Vector2(sprite.Position.X - speed, sprite.Position.Y);
+			}
+			else
+			{
+				sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y);
+			}
+			if (e == true)
+			{
+				sprite.Position = new Vector2(sprite.Position.X + speed, sprite.Position.Y);
+			}
+			else
+			{
+				sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y);
+			}
+		}
 		
 		public void Tapped()
 		{

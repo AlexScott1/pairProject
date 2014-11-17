@@ -18,9 +18,9 @@ namespace FlappyBird
 		private static Sce.PlayStation.HighLevel.UI.Scene 				uiScene;
 		private static Sce.PlayStation.HighLevel.UI.Label				scoreLabel;
 		
-		private static Obstacle[]	obstacles;
-		private static Bird			bird;
+		private static Player			player;
 		private static Background	background;
+		private static bool				North, South, East, West;
 				
 		public static void Main (string[] args)
 		{
@@ -41,9 +41,7 @@ namespace FlappyBird
 			}
 			
 			//Clean up after ourselves.
-			bird.Dispose();
-			foreach(Obstacle obstacle in obstacles)
-				obstacle.Dispose();
+			player.Dispose();
 			background.Dispose();
 			
 			Director.Terminate ();
@@ -79,13 +77,8 @@ namespace FlappyBird
 			background = new Background(gameScene);
 			
 			//Create the flappy douche
-			bird = new Bird(gameScene);
-			
-			//Create some obstacles.
-			obstacles = new Obstacle[2];
-			obstacles[0] = new Obstacle(Director.Instance.GL.Context.GetViewport().Width*0.5f, gameScene);	
-			obstacles[1] = new Obstacle(Director.Instance.GL.Context.GetViewport().Width, gameScene);
-			
+			player = new Player(gameScene);
+						
 			//Run the scene.
 			Director.Instance.RunWithScene(gameScene, true);
 		}
@@ -97,28 +90,40 @@ namespace FlappyBird
 			GamePadData data = GamePad.GetData(0);
 			//If tapped, inform the bird.
 			if (Input2.GamePad0.Up.Down)
-			{
+				North = true;
+			else
+				North = false;
 			
-				bird.Tapped();
-			}
+			if (Input2.GamePad0.Left.Down)
+				West = true;
+			else
+				West = false;
 			
-			if (Input2.GamePad0.Cross.Press)
-			{
+			if (Input2.GamePad0.Right.Down)
+				East = true;
+			else
+				East = false;
 			
-				bird.Tapped();
-			}
+			if (Input2.GamePad0.Down.Down)
+				South = true;
+			else
+				South = false;
+						
+//			if (Input2.GamePad0.Cross.Press)
+//			{
+//			
+//				player.Tapped();
+//			}
 			
 			//Update the bird.
-			bird.Update(0.0f);
+			//player.Update(0.0f);
+			player.UpdateV2(North, East, South, West);
 			
-			if(bird.Alive)
+			if(player.Alive)
 			{
 				//Move the background.
-				background.Update(0.0f);
-							
-				//Update the obstacles.
-				foreach(Obstacle obstacle in obstacles)
-					obstacle.Update(0.0f);
+				//background.Update(0.0f);
+				
 			}
 		}
 		
