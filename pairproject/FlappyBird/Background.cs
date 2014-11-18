@@ -11,7 +11,7 @@ namespace FlappyBird
 	public class Background
 	{	
 		//Private variables.
-		private SpriteUV[] 	sprites;
+		private SpriteUV 	sprites;
 		private TextureInfo	textureInfo;
 		private float		width;
 		private float 		height;
@@ -19,42 +19,19 @@ namespace FlappyBird
 		//Public functions.
 		public Background (Scene scene)
 		{
-			sprites	= new SpriteUV[5];
+			sprites	= new SpriteUV();
 			
 			textureInfo  		= new TextureInfo("/Application/textures/background.png");
 			//Left
-			sprites[0] 			= new SpriteUV(textureInfo);
-			sprites[0].Quad.S 	= textureInfo.TextureSizef;
-			//Middle
-			sprites[1] 			= new SpriteUV(textureInfo);
-			sprites[1].Quad.S 	= textureInfo.TextureSizef;
-			//Right
-			sprites[2] 			= new SpriteUV(textureInfo);
-			sprites[2].Quad.S 	= textureInfo.TextureSizef;
-			//Above
-			sprites[3] 			= new SpriteUV(textureInfo);
-			sprites[3].Quad.S 	= textureInfo.TextureSizef;
-			//Below
-			sprites[4] 			= new SpriteUV(textureInfo);
-			sprites[4].Quad.S 	= textureInfo.TextureSizef;
-			
-			//Get sprite bounds.
-			Bounds2 b = sprites[0].Quad.Bounds2();
-			width     = b.Point10.X;
-			height 	  = b.Point11.Y;
-			
+			sprites 			= new SpriteUV(textureInfo);
+			sprites.Quad.S 		= textureInfo.TextureSizef/0.01f;
+									
 			//Position pipes.
-			sprites[0].Position = new Vector2(0.0f, 0.0f);
-			
-			sprites[1].Position = new Vector2(sprites[0].Position.X+width, 0.0f);
-			
-			sprites[2].Position = new Vector2(sprites[1].Position.X+width, 0.0f);
-			
-			sprites[3].Position = new Vector2(sprites[0].Position.X+width, 0.0f);
-			
+			sprites.Position = new Vector2(-1000.0f, -1000.0f);
+						
 			//Add to the current scene.
-			foreach(SpriteUV sprite in sprites)
-				scene.AddChild(sprite);
+			//foreach(SpriteUV sprite in sprites)
+				scene.AddChild(sprites);
 		}	
 		
 		public void Dispose()
@@ -64,28 +41,28 @@ namespace FlappyBird
 		
 		public void Update(float deltaTime)
 		{			
-			sprites[0].Position = new Vector2(sprites[0].Position.X - 0.5f, sprites[0].Position.Y);
-			sprites[1].Position = new Vector2(sprites[1].Position.X - 0.5f, sprites[1].Position.Y);
-			sprites[2].Position = new Vector2(sprites[2].Position.X - 0.5f, sprites[2].Position.Y);
-			
-			//Move the background.
-			//Left
-			if(sprites[0].Position.X < -width)
-				sprites[0].Position = new Vector2(sprites[2].Position.X+width, 0.0f);
-			else
-				sprites[0].Position = new Vector2(sprites[0].Position.X-1, 0.0f);	
-			
-			//Middle
-			if(sprites[1].Position.X < -width)
-				sprites[1].Position = new Vector2(sprites[0].Position.X+width, 0.0f);
-			else
-				sprites[1].Position = new Vector2(sprites[1].Position.X-1, 0.0f);	
-			
-			//Right
-			if(sprites[2].Position.X < -width)
-				sprites[2].Position = new Vector2(sprites[1].Position.X+width, 0.0f);
-			else
-				sprites[2].Position = new Vector2(sprites[2].Position.X-1, 0.0f);	
+//			sprites[0].Position = new Vector2(sprites[0].Position.X - 0.5f, sprites[0].Position.Y);
+//			sprites[1].Position = new Vector2(sprites[1].Position.X - 0.5f, sprites[1].Position.Y);
+//			sprites[2].Position = new Vector2(sprites[2].Position.X - 0.5f, sprites[2].Position.Y);
+//			
+//			//Move the background.
+//			//Left
+//			if(sprites[0].Position.X < -width)
+//				sprites[0].Position = new Vector2(sprites[2].Position.X+width, 0.0f);
+//			else
+//				sprites[0].Position = new Vector2(sprites[0].Position.X-1, 0.0f);	
+//			
+//			//Middle
+//			if(sprites[1].Position.X < -width)
+//				sprites[1].Position = new Vector2(sprites[0].Position.X+width, 0.0f);
+//			else
+//				sprites[1].Position = new Vector2(sprites[1].Position.X-1, 0.0f);	
+//			
+//			//Right
+//			if(sprites[2].Position.X < -width)
+//				sprites[2].Position = new Vector2(sprites[1].Position.X+width, 0.0f);
+//			else
+//				sprites[2].Position = new Vector2(sprites[2].Position.X-1, 0.0f);	
 		}
 	}
 }

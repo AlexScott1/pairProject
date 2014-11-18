@@ -52,11 +52,10 @@ namespace FlappyBird
 			//Set up director and UISystem.
 			Director.Initialize ();
 			UISystem.Initialize(Director.Instance.GL.Context);
-			
+	
 			//Set game scene
 			gameScene = new Sce.PlayStation.HighLevel.GameEngine2D.Scene();
-			gameScene.Camera.SetViewFromViewport();
-			
+									
 			//Set the ui scene.
 			uiScene = new Sce.PlayStation.HighLevel.UI.Scene();
 			Panel panel  = new Panel();
@@ -78,7 +77,7 @@ namespace FlappyBird
 			
 			//Create the flappy douche
 			player = new Player(gameScene);
-						
+								
 			//Run the scene.
 			Director.Instance.RunWithScene(gameScene, true);
 		}
@@ -115,16 +114,11 @@ namespace FlappyBird
 //				player.Tapped();
 //			}
 			
-			//Update the bird.
-			//player.Update(0.0f);
-			player.UpdateV2(North, East, South, West);
+			//Player Movement
+			player.Update(North, East, South, West);
 			
-			if(player.Alive)
-			{
-				//Move the background.
-				//background.Update(0.0f);
-				
-			}
+			//Camera Focus on player
+			gameScene.Camera2D.SetViewY(new Vector2(0.0f,Director.Instance.GL.Context.GetViewport().Height*0.5f), player.GetPos());
 		}
 		
 	}

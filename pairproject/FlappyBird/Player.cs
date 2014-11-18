@@ -18,7 +18,7 @@ namespace FlappyBird
 		private static bool			rise;
 		private static float		angle;
 		private static bool			alive;
-		private static float 		speed = 1.0f;
+		private static float 		speed = 3.0f;
 		
 		public bool Alive { get{return alive;} set{alive = value;} }
 		
@@ -32,8 +32,8 @@ namespace FlappyBird
 			
 			sprite	 		= new SpriteUV();
 			sprite 			= new SpriteUV(textureInfo);	
-			sprite.Quad.S 	= textureInfo.TextureSizef;
-			sprite.Position = new Vector2(50.0f,Director.Instance.GL.Context.GetViewport().Height*0.5f);
+			sprite.Quad.S 	= textureInfo.TextureSizef*0.5f;
+			sprite.Position = new Vector2(100,100);
 			//sprite.Pivot 	= new Vector2(0.5f,0.5f);
 			angle = 0.0f;
 			rise  = false;
@@ -66,7 +66,7 @@ namespace FlappyBird
 			}
 		}	
 		
-		public void UpdateV2(bool n, bool e, bool s, bool w)
+		public void Update(bool n, bool e, bool s, bool w)
 		{
 			if (n == true)
 			{
@@ -76,7 +76,7 @@ namespace FlappyBird
 			{
 				sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y);
 			}
-			if (s == true)
+			if (s == true)	
 			{
 				sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - speed);
 			}
@@ -100,6 +100,11 @@ namespace FlappyBird
 			{
 				sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y);
 			}
+		}
+		
+		public Vector2 GetPos()
+		{
+			return sprite.Position;
 		}
 		
 		public void Tapped()
