@@ -39,10 +39,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppMain.cs" />
-    <Compile Include="Bird.cs" />
-    <Compile Include="Obstacle.cs" />
     <Compile Include="Background.cs" />
-    <Compile Include="testClass.cs" />
+    <Compile Include="Bullet.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="GameOver.cs" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="app.xml" />
@@ -52,15 +54,41 @@
     <Folder Include="shaders\" />
     <Folder Include="textures\" />
     <Folder Include="fonts\" />
+    <Folder Include="sounds\" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Texture.fcg" />
     <ShaderProgram Include="shaders\Texture.vcg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="textures\bottompipe.png" />
-    <Content Include="textures\bird.png" />
-    <Content Include="textures\toppipe.png" />
-    <Content Include="textures\background.png" />
+    <Content Include="textures\floor.png" />
+    <Content Include="textures\playertest.png" />
+    <Content Include="textures\zombie.png" />
+    <Content Include="textures\zombiedown.png" />
+    <Content Include="textures\zombieleft.png" />
+    <Content Include="textures\zombieright.png" />
+    <Content Include="textures\bullet.png" />
+    <Content Include="textures\playertest2.png" />
+    <Content Include="textures\floor50x50.png" />
+    <Content Include="textures\veggie_royale_title.png" />
+    <Content Include="textures\menuScreen.png" />
+    <Content Include="sounds\shoot.wav" />
+    <Content Include="sounds\shoot2.wav" />
+    <Content Include="sounds\shoot3.mp3" />
+    <Content Include="sounds\bgm.wav" />
+    <Content Include="sounds\death.mp3" />
+    <Content Include="sounds\click.wav" />
+    <Content Include="sounds\nextlevel.wav" />
+    <Content Include="sounds\chaching.wav" />
+    <Content Include="textures\a1.png" />
+    <Content Include="textures\a2.png" />
+    <Content Include="textures\a3.png" />
+    <Content Include="textures\a4.png" />
+    <Content Include="textures\a5.png" />
+    <Content Include="textures\a6.png" />
+    <Content Include="textures\a7.png" />
+    <Content Include="textures\a8.png" />
+    <Content Include="textures\a9.png" />
+    <Content Include="textures\a10.png" />
   </ItemGroup>
 </Project>
